@@ -1,5 +1,7 @@
 package com.example.cs393_project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,9 +15,9 @@ public class Question {
     private int id;
     @Column(name = "TITLE", length=50, nullable = false)
     private String title;
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date ask_date;
-    @Column(name = "QUESTION_DESC",nullable = false)
+    @Column(name = "QUESTION_DESC",nullable = false, length = 100)
     private String question_desc;
     @Column(name = "VIEW_COUNT")
     private int view_count;

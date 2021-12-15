@@ -1,5 +1,7 @@
 package com.example.cs393_project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class User {
 
     @OneToMany()
     @JoinColumn(name = "USER_ID")
+    @JsonIgnore
     private List<Question> questions = new ArrayList<>();
     @OneToMany
     @JoinColumn(name = "USER_ID")

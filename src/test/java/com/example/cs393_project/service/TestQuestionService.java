@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @SpringBootTest
@@ -42,6 +43,7 @@ public class TestQuestionService
         question.setQuestionTags(q_tags);
         question.setQuestion_desc("How will i use insert statement in native sql structure in my Springboot project?");
         question.setUser(user);
+        question.setAsk_date(new Date());
         user.getQuestions().add(question);
 
 

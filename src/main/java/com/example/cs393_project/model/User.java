@@ -13,13 +13,13 @@ public class User {
     @Column(length = 30, nullable = false)
     private String name;
 
-    @OneToMany(mappedBy = "user")
-    @JoinColumn(name = "STUDENT_ID")
+    @OneToMany()
+    @JoinColumn(name = "USER_ID")
     private List<Question> questions = new ArrayList<>();
     @OneToMany
-    @JoinColumn(name = "STUDENT_ID")
+    @JoinColumn(name = "USER_ID")
     private List<Answer> answers = new ArrayList<>();
     @OneToMany
-    @JoinColumn(name = "STUDENT_ID")
+    @JoinColumn(name = "USER_ID")
     private List<Comment> comments = new ArrayList<>();
 }

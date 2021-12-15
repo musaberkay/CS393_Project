@@ -11,17 +11,17 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @Column(length=50, nullable = false)
+    @Column(name = "TITLE", length=50, nullable = false)
     private String title;
     @Temporal(TemporalType.DATE)
     private Date ask_date;
-    @Column(nullable = false)
+    @Column(name = "QUESTION_DESC",nullable = false)
     private String question_desc;
-    @Column(nullable = false)
+    @Column(name = "VIEW_COUNT",nullable = false)
     private int view_count;
-    @Column(nullable = false)
+    @Column(name = "VOTE_COUNT",nullable = false)
     private int vote_count;
-    @Column(nullable = false)
+    @Column(name = "ANSWER_COUNT",nullable = false)
     private int answer_count;
     @Transient
     private List<String> tags = new ArrayList<>();

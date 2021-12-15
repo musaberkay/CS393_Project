@@ -19,7 +19,7 @@ public class Answer {
     private int vote_count;
     @ManyToOne
     private User user;
-    @OneToMany(mappedBy = "answer")
+    @OneToMany()
     @JoinColumn(name = "ANSWER_ID")
     private List<Comment> comments = new ArrayList<>();
 }

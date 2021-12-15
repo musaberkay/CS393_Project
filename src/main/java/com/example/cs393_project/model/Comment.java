@@ -19,4 +19,5 @@ public class Comment {
     private Question question;
     @ManyToOne
     private Answer answer;
+
 }

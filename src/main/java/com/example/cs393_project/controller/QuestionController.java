@@ -14,6 +14,7 @@ public class QuestionController
     @Autowired
     QuestionService questionService;
 
+    @GetMapping
     public List<Question> getAll()
     {
         return questionService.getAll();

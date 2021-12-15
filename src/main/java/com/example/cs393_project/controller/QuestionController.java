@@ -26,7 +26,7 @@ public class QuestionController
     }
 
     @PostMapping
-    public Question createInstructor(@RequestBody Question data)
+    public Question createQuestion(@RequestBody Question data)
     {
         return questionService.save(data);
     }

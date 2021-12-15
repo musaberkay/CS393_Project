@@ -23,8 +23,10 @@ public class Question {
     private int vote_count;
     @Column(name = "ANSWER_COUNT",nullable = false)
     private int answer_count;
-    @Transient
-    private List<String> tags = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "T_QUESTION_TAGS", joinColumns = @JoinColumn(name = "QUESTION_ID"))
+    private List<String> questionTags = new ArrayList<>();
     @ManyToOne
     private User user;
     @OneToMany

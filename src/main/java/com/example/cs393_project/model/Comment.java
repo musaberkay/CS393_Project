@@ -25,6 +25,10 @@ public class Comment {
     @ManyToOne
     private Answer answer;
 
+    @Column(name = "VOTE_COUNT")
+    private int vote_count;
+
+
     public int getId() {
         return id;
     }

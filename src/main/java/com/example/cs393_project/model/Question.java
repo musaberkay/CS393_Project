@@ -35,7 +35,6 @@ public class Question {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "QUESTION_ID")
-  //  @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)

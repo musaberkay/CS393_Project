@@ -20,17 +20,14 @@ public class User {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
-//    @JsonIgnore
     private List<Question> questions = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
-//    @JsonIgnore
     private List<Answer> answers = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "USER_ID")
-  //  @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     public int getId() {

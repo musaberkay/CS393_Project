@@ -16,17 +16,21 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
     @Column(nullable = false)
     private String answer_desc;
+
     @Temporal(TemporalType.DATE)
     private Date answer_date;
 
+    @Column(name = "VOTE_COUNT")
     private int vote_count;
+
     @ManyToOne
     private User user;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "ANSWER_ID")
-   // @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     public int getId() {

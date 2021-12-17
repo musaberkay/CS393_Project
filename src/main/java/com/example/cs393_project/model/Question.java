@@ -89,4 +89,39 @@ public class Question {
         return answers;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public Date getAsk_date() {
+        return ask_date;
+    }
+
+    public String getQuestion_desc() {
+        return question_desc;
+    }
+
+    public int getAnswer_count() {
+        return answer_count;
+    }
+
+    public void setAnswer_count(int answer_count) {
+        this.answer_count = answer_count;
+    }
+
+    public List<String> getQuestionTags() {
+        return questionTags;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
+    }
 }

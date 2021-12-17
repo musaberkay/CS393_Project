@@ -69,4 +69,5 @@ public class User {
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
+
 }

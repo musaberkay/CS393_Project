@@ -31,10 +31,13 @@ public class Question {
     private List<String> questionTags = new ArrayList<>();
     @ManyToOne
     private User user;
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "QUESTION_ID")
+    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
-    @OneToMany
+
+    @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "QUESTION_ID")
     private List<Answer> answers = new ArrayList<>();
 

@@ -62,14 +62,17 @@ public class QuestionController
 
         return questionService.save(question);
     }
-//    @PostMapping("/{answer-id}/commentforanswer")
-//    public Answer createCommentforAnswer(@PathVariable("answer-id") int id,@RequestBody Comment data)
-//    {
-//        Answer answer = answerService.getAnswerById(id);
-//        answer.getComments().add(data);
-//
-//        return answerService.save(answer);
-//    }
 
+    @DeleteMapping("/{comment-id}")
+    public void deleteComment(@PathVariable("comment-id") int id)
+    {
+        commentService.deleteById(id);
+    }
+
+    @PutMapping()
+    public Question updateQuestion(@RequestBody Question data)
+    {
+        return questionService.save(data);
+    }
 
 }

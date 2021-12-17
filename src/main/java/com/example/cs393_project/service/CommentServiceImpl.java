@@ -15,4 +15,9 @@ public class CommentServiceImpl implements CommentService
     public Comment save(Comment comment) {
         return commentRepository.save(comment);
     }
+
+    @Override
+    public void deleteById(int id) {
+        commentRepository.deleteById(id);
+    }
 }

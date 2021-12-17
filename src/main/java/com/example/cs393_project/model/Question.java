@@ -22,8 +22,6 @@ public class Question {
     private Date ask_date;
     @Column(name = "QUESTION_DESC",nullable = false, length = 100)
     private String question_desc;
-    @Column(name = "VIEW_COUNT")
-    private int view_count;
     @Column(name = "VOTE_COUNT")
     private int vote_count;
     @Column(name = "ANSWER_COUNT")
@@ -74,14 +72,6 @@ public class Question {
 
     public void setQuestion_desc(String question_desc) {
         this.question_desc = question_desc;
-    }
-
-    public int getView_count() {
-        return view_count;
-    }
-
-    public void setView_count(int view_count) {
-        this.view_count = view_count;
     }
 
     public int getVote_count() {

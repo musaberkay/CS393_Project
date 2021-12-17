@@ -5,4 +5,5 @@ import com.example.cs393_project.model.Comment;
 public interface CommentService
 {
     public Comment save(Comment comment);
+    public void deleteById(int id);
 }

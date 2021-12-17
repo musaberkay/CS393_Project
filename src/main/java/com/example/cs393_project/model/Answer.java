@@ -41,22 +41,6 @@ public class Answer {
         this.id = id;
     }
 
-    public String getAnswer_desc() {
-        return answer_desc;
-    }
-
-    public void setAnswer_desc(String answer_desc) {
-        this.answer_desc = answer_desc;
-    }
-
-    public Date getAnswer_date() {
-        return answer_date;
-    }
-
-    public void setAnswer_date(Date answer_date) {
-        this.answer_date = answer_date;
-    }
-
     public int getVote_count() {
         return vote_count;
     }
@@ -65,19 +49,8 @@ public class Answer {
         this.vote_count = vote_count;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public List<Comment> getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
 }

@@ -3,7 +3,6 @@ package com.example.cs393_project.controller;
 import com.example.cs393_project.model.Answer;
 import com.example.cs393_project.model.Comment;
 import com.example.cs393_project.model.Question;
-import com.example.cs393_project.model.User;
 import com.example.cs393_project.service.AnswerService;
 import com.example.cs393_project.service.CommentService;
 import com.example.cs393_project.service.QuestionService;
@@ -11,7 +10,7 @@ import com.example.cs393_project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @RestController
@@ -54,8 +53,8 @@ public class QuestionController
         return questionService.save(question);
     }
 
-    @PostMapping("/{question-id}/commentforquestion")
-    public Question createCommentforQuestion(@PathVariable("question-id") int id,@RequestBody Comment data)
+    @PostMapping("/{question-id}/comments")
+    public Question createComments(@PathVariable("question-id") int id,@RequestBody Comment data)
     {
         Question question = questionService.getQuestionById(id);
         question.getComments().add(data);
@@ -63,7 +62,7 @@ public class QuestionController
         return questionService.save(question);
     }
 
-    @DeleteMapping("/{comment-id}")
+    @DeleteMapping("/comments/{comment-id}")
     public void deleteComment(@PathVariable("comment-id") int id)
     {
         commentService.deleteById(id);
@@ -73,6 +72,22 @@ public class QuestionController
     public Question updateQuestion(@RequestBody Question data)
     {
         return questionService.save(data);
+    }
+
+    @PutMapping("/{question-id}/vote")
+    public Question voteQuestion(@PathVariable("question-id") int id)
+    {
+        Question question = questionService.getQuestionById(id);
+        question.setVote_count(question.getVote_count() + 1);
+        return questionService.save(question);
+    }
+
+    @PutMapping("/comments/{comment-id}/vote")
+    public Comment voteQuestionComments(@PathVariable("comment-id") int id)
+    {
+        Comment comment = commentService.getCommentById(id);
+        comment.setVote_count(comment.getVote_count() + 1);
+        return commentService.save(comment);
     }
 
 }

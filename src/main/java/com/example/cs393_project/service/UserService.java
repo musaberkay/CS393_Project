@@ -4,5 +4,5 @@ import com.example.cs393_project.model.User;
 
 public interface UserService
 {
-    public User save(User user);
+     User save(User user);
 }

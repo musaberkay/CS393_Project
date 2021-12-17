@@ -30,8 +30,4 @@ public class QuestionServiceImpl implements QuestionService
     }
 
 
-//    public List<Question> getAll(List<String> questionTag)
-//    {
-//
-//    }
 }

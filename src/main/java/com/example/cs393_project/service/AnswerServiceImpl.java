@@ -1,7 +1,6 @@
 package com.example.cs393_project.service;
 
 import com.example.cs393_project.model.Answer;
-import com.example.cs393_project.model.Question;
 import com.example.cs393_project.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

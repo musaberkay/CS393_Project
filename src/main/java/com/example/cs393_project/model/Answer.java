@@ -20,8 +20,8 @@ public class Answer {
     @Column(nullable = false)
     private String answer_desc;
 
-    @Temporal(TemporalType.DATE)
-    private Date answer_date;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date answer_date = new Date(System.currentTimeMillis());
 
     @Column(name = "VOTE_COUNT")
     private int vote_count;

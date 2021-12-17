@@ -1,12 +1,15 @@
 package com.example.cs393_project.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 @Table(name = "T_COMMENT")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Comment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

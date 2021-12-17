@@ -1,6 +1,8 @@
 package com.example.cs393_project.model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "T_QUESTION")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +37,7 @@ public class Question {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "QUESTION_ID")
-    @JsonIgnore
+  //  @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)

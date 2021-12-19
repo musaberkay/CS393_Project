@@ -2,6 +2,7 @@ package com.example.cs393_project.controller;
 
 import com.example.cs393_project.model.Answer;
 import com.example.cs393_project.model.Comment;
+import com.example.cs393_project.model.DTO.QuestionDTO;
 import com.example.cs393_project.model.Question;
 import com.example.cs393_project.service.AnswerService;
 import com.example.cs393_project.service.CommentService;
@@ -27,9 +28,14 @@ public class QuestionController
     AnswerService answerService;
 
     @GetMapping
-    public List<Question> getAll()
+    public List<QuestionDTO> getAll()
     {
         return questionService.getAll();
+    }
+
+    @GetMapping("/tags/{tags}")
+    public List<QuestionDTO> getAllbyTags(@PathVariable("tags") List<String> tags){
+        return questionService.getAllbyTags(tags);
     }
 
     @GetMapping("/{question-id}")

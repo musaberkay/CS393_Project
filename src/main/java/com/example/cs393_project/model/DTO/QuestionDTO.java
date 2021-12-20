@@ -5,21 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 public class QuestionDTO {
-    private int id;
     private String title;
     private Date ask_date = new Date(System.currentTimeMillis());
     private String short_question_desc;
     private int vote_count;
     private int answer_count;
     private List<String> questionTags = new ArrayList<>();
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private UserDTO user;
 
     public String getTitle() {
         return title;
@@ -67,5 +59,13 @@ public class QuestionDTO {
 
     public void setQuestionTags(List<String> questionTags) {
         this.questionTags = questionTags;
+    }
+
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 }

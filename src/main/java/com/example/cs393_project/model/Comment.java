@@ -1,6 +1,7 @@
 package com.example.cs393_project.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -19,14 +20,13 @@ public class Comment {
     private Date date = new Date(System.currentTimeMillis());
     @ManyToOne
     private User user;
-    @ManyToOne
+    @ManyToOne @JsonIgnore
     private Question question;
-    @ManyToOne
+    @ManyToOne @JsonIgnore
     private Answer answer;
 
     @Column(name = "VOTE_COUNT")
     private int vote_count;
-
 
     public int getId() {
         return id;

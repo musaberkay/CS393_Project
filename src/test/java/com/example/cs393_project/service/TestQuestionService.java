@@ -23,12 +23,12 @@ public class TestQuestionService
     {
         // creation of user1
         User user = new User();
-        user.setName("Ali Şaşal");
+        user.setName("Elon");
         userService.save(user);
 
         //creation of user2
         User user2 = new User();
-        user2.setName("İrfancan Eğribayat");
+        user2.setName("Bill");
         userService.save(user2);
 
         // creation of questionTags

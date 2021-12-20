@@ -1,6 +1,7 @@
 package com.example.cs393_project.model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
@@ -16,13 +17,13 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "TITLE", length=50, nullable = false)
+    @Column(name = "TITLE", nullable = false)
     private String title;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date ask_date = new Date(System.currentTimeMillis());
 
-    @Column(name = "QUESTION_DESC",nullable = false, length = 100)
+    @Column(name = "QUESTION_DESC",nullable = false)
     private String question_desc;
 
     @Column(name = "VOTE_COUNT")
@@ -34,6 +35,7 @@ public class Question {
     @ElementCollection
     @CollectionTable(name = "T_QUESTION_TAGS", joinColumns = @JoinColumn(name = "QUESTION_ID"))
     private List<String> questionTags = new ArrayList<>();
+
     @ManyToOne
     private User user;
 

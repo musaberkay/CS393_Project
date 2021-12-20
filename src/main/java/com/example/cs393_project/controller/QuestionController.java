@@ -45,9 +45,9 @@ public class QuestionController
     }
 
     @PostMapping
-    public Question createQuestion(@RequestBody Question data)
+    public Question createQuestion(@RequestBody Question question)
     {
-        return questionService.save(data);
+        return questionService.save(question);
     }
 
     @PostMapping("/{question-id}/answers")
@@ -55,7 +55,7 @@ public class QuestionController
     {
         Question question = questionService.getQuestionById(id);
         question.getAnswers().add(data);
-
+        question.setAnswer_count(question.getAnswer_count()+1);
         return questionService.save(question);
     }
 
@@ -68,32 +68,26 @@ public class QuestionController
         return questionService.save(question);
     }
 
-    @DeleteMapping("/comments/{comment-id}")
-    public void deleteComment(@PathVariable("comment-id") int id)
-    {
-        commentService.deleteById(id);
-    }
-
     @PutMapping()
     public Question updateQuestion(@RequestBody Question data)
     {
         return questionService.save(data);
     }
 
-    @PutMapping("/{question-id}/vote")
-    public Question voteQuestion(@PathVariable("question-id") int id)
+    @PutMapping("/{question-id}/vote/like")
+    public Question likeQuestion(@PathVariable("question-id") int id)
     {
         Question question = questionService.getQuestionById(id);
         question.setVote_count(question.getVote_count() + 1);
         return questionService.save(question);
     }
 
-    @PutMapping("/comments/{comment-id}/vote")
-    public Comment voteQuestionComments(@PathVariable("comment-id") int id)
+    @PutMapping("/{question-id}/vote/dislike")
+    public Question dislikeQuestion(@PathVariable("question-id") int id)
     {
-        Comment comment = commentService.getCommentById(id);
-        comment.setVote_count(comment.getVote_count() + 1);
-        return commentService.save(comment);
+        Question question = questionService.getQuestionById(id);
+        question.setVote_count(question.getVote_count() - 1);
+        return questionService.save(question);
     }
 
 }

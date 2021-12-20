@@ -34,31 +34,26 @@ public class AnswerController
         return answerService.save(answer);
     }
 
-    @DeleteMapping("/comments/{comment-id}")
-    public void deleteComment(@PathVariable("comment-id") int id)
-    {
-        commentService.deleteById(id);
-    }
-
     @PutMapping()
     public Answer updateAnswer(@RequestBody Answer data)
     {
         return answerService.save(data);
     }
 
-    @PutMapping("/{answer-id}/vote")
-    public Answer voteAnswer(@PathVariable("answer-id") int id)
+    @PutMapping("/{answer-id}/vote/like")
+    public Answer likeAnswer(@PathVariable("answer-id") int id)
     {
         Answer answer = answerService.getAnswerById(id);
         answer.setVote_count(answer.getVote_count() + 1);
         return answerService.save(answer);
     }
 
-    @PutMapping("/comments/{comment-id}/vote")
-    public Comment voteAnswerComments(@PathVariable("comment-id") int id)
+    @PutMapping("/{answer-id}/vote/dislike")
+    public Answer dislikeAnswer(@PathVariable("answer-id") int id)
     {
-        Comment comment = commentService.getCommentById(id);
-        comment.setVote_count(comment.getVote_count() + 1);
-        return commentService.save(comment);
+        Answer answer = answerService.getAnswerById(id);
+        answer.setVote_count(answer.getVote_count() - 1);
+        return answerService.save(answer);
     }
+
 }

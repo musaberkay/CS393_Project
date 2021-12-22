@@ -34,7 +34,7 @@ public class QuestionController
     }
 
     @GetMapping("/tags/{tags}")
-    public List<QuestionDTO> getAllbyTags(@PathVariable("tags") List<String> tags){
+    public List<Question> getAllbyTags(@PathVariable("tags") List<String> tags){
         return questionService.getAllbyTags(tags);
     }
 

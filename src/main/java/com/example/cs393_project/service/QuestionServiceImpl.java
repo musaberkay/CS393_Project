@@ -32,20 +32,8 @@ public class QuestionServiceImpl implements QuestionService
     }
 
     @Override
-    public List<QuestionDTO> getAllbyTags(List<String> tags) {
-        List<QuestionDTO> list = new ArrayList<>();
-        List<Question> questionList = questionRepository.findAll();
-        for(String tag: tags){
-            for(Question question: questionList){
-                if(question.getQuestionTags().contains(tag)){
-                    QuestionDTO dto = QuestionMapper.INSTANCE.toDto(question);
-                    if(!list.contains(dto)){
-                        list.add(dto);
-                    }
-                }
-            }
-        }
-        return list;
+    public List<Question> getAllbyTags(List<String> tags) {
+        return questionRepository.getQuestionByQuestionTagsIn(tags);
     }
 
     @Override

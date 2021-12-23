@@ -5,6 +5,8 @@ import com.example.cs393_project.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentServiceImpl implements CommentService
 {
@@ -25,4 +27,5 @@ public class CommentServiceImpl implements CommentService
     public Comment getCommentById(int id) {
         return commentRepository.findById(id).get();
     }
+
 }

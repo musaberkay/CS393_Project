@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface QuestionService {
      List<QuestionDTO> getAll();
-     List<Question> getAllbyTags(List<String> tags);
+     List<QuestionDTO> getAllbyTags(List<String> tags);
      Question getQuestionById(int id);
      Question save(Question question);
 

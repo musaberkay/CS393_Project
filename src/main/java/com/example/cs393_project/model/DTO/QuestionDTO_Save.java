@@ -1,17 +1,15 @@
 package com.example.cs393_project.model.DTO;
 
+import com.example.cs393_project.model.User;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class QuestionDTO {
+public class QuestionDTO_Save {
     private String title;
-    private Date ask_date = new Date(System.currentTimeMillis());
     private String question_desc;
-    private int vote_count;
-    private int answer_count;
     private List<String> questionTags = new ArrayList<>();
-    private UserDTO user;
+    private User user;
 
     public String getTitle() {
         return title;
@@ -19,14 +17,6 @@ public class QuestionDTO {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Date getAsk_date() {
-        return ask_date;
-    }
-
-    public void setAsk_date(Date ask_date) {
-        this.ask_date = ask_date;
     }
 
     public String getQuestion_desc() {
@@ -37,22 +27,6 @@ public class QuestionDTO {
         this.question_desc = question_desc;
     }
 
-    public int getVote_count() {
-        return vote_count;
-    }
-
-    public void setVote_count(int vote_count) {
-        this.vote_count = vote_count;
-    }
-
-    public int getAnswer_count() {
-        return answer_count;
-    }
-
-    public void setAnswer_count(int answer_count) {
-        this.answer_count = answer_count;
-    }
-
     public List<String> getQuestionTags() {
         return questionTags;
     }
@@ -61,11 +35,11 @@ public class QuestionDTO {
         this.questionTags = questionTags;
     }
 
-    public UserDTO getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(UserDTO user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

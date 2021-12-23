@@ -2,7 +2,7 @@ package com.example.cs393_project.controller;
 
 import com.example.cs393_project.model.Answer;
 import com.example.cs393_project.model.Comment;
-import com.example.cs393_project.model.DTO.QuestionDTO;
+import com.example.cs393_project.model.DTO.*;
 import com.example.cs393_project.model.Question;
 import com.example.cs393_project.service.AnswerService;
 import com.example.cs393_project.service.CommentService;
@@ -34,7 +34,7 @@ public class QuestionController
     }
 
     @GetMapping("/tags/{tags}")
-    public List<Question> getAllbyTags(@PathVariable("tags") List<String> tags){
+    public List<QuestionDTO> getAllbyTags(@PathVariable("tags") List<String> tags){
         return questionService.getAllbyTags(tags);
     }
 
@@ -45,26 +45,25 @@ public class QuestionController
     }
 
     @PostMapping
-    public Question createQuestion(@RequestBody Question question)
+    public Question createQuestion(@RequestBody QuestionDTO_Save dto)
     {
-        return questionService.save(question);
+        return questionService.save(QuestionMapper_Save.INSTANCE.toObject(dto));
     }
 
     @PostMapping("/{question-id}/answers")
-    public Question createAnswer(@PathVariable("question-id") int id,@RequestBody Answer data)
+    public Question createAnswer(@PathVariable("question-id") int id,@RequestBody AnswerDTO dto)
     {
         Question question = questionService.getQuestionById(id);
-        question.getAnswers().add(data);
+        question.getAnswers().add(AnswerMapper.INSTANCE.toObject(dto));
         question.setAnswer_count(question.getAnswer_count()+1);
         return questionService.save(question);
     }
 
     @PostMapping("/{question-id}/comments")
-    public Question createComments(@PathVariable("question-id") int id,@RequestBody Comment data)
+    public Question createComments(@PathVariable("question-id") int id,@RequestBody CommentDTO dto)
     {
         Question question = questionService.getQuestionById(id);
-        question.getComments().add(data);
-
+        question.getComments().add(CommentMapper.INSTANCE.toObject(dto));
         return questionService.save(question);
     }
 

@@ -1,6 +1,7 @@
 package com.example.cs393_project.controller;
 
 import com.example.cs393_project.model.Comment;
+import com.example.cs393_project.model.DTO.CommentDTO;
 import com.example.cs393_project.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,20 +19,23 @@ public class CommentController {
         commentService.deleteById(id);
     }
 
-    @PutMapping()
-    public Comment updateComment(@RequestBody Comment data)
+    @PutMapping("/{comment-id}")
+    public Comment updateComment(@PathVariable("comment-id") int id, @RequestBody CommentDTO dto)
     {
-        return commentService.save(data);
+        Comment comment = commentService.getCommentById(id);
+        comment.setComment_desc(dto.getComment_desc());
+        comment.setUser(dto.getUser());
+        return commentService.save(comment);
     }
 
-    @PutMapping("{comment-id}/vote/like")
+    @PutMapping("/{comment-id}/vote/like")
     public Comment likeQuestionComments(@PathVariable("comment-id") int id)
     {
         Comment comment = commentService.getCommentById(id);
         comment.setVote_count(comment.getVote_count() + 1);
         return commentService.save(comment);
     }
-    @PutMapping("{comment-id}/vote/dislike")
+    @PutMapping("/{comment-id}/vote/dislike")
     public Comment dislikeQuestionComments(@PathVariable("comment-id") int id)
     {
         Comment comment = commentService.getCommentById(id);

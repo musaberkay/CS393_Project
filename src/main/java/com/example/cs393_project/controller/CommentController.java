@@ -2,6 +2,7 @@ package com.example.cs393_project.controller;
 
 import com.example.cs393_project.model.Comment;
 import com.example.cs393_project.model.DTO.CommentDTO;
+import com.example.cs393_project.model.DTO.CommentDTO_Update;
 import com.example.cs393_project.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,11 +21,10 @@ public class CommentController {
     }
 
     @PutMapping("/{comment-id}")
-    public Comment updateComment(@PathVariable("comment-id") int id, @RequestBody CommentDTO dto)
+    public Comment updateComment(@PathVariable("comment-id") int id, @RequestBody CommentDTO_Update dto)
     {
         Comment comment = commentService.getCommentById(id);
         comment.setComment_desc(dto.getComment_desc());
-        comment.setUser(dto.getUser());
         return commentService.save(comment);
     }
 

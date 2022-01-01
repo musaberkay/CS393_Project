@@ -1,8 +1,7 @@
 package com.example.cs393_project.controller;
 
-import com.example.cs393_project.model.Comment;
-import com.example.cs393_project.model.DTO.CommentDTO;
 import com.example.cs393_project.model.DTO.CommentDTO_Update;
+import com.example.cs393_project.model.DTO.CommentVote_DTO;
 import com.example.cs393_project.service.CommentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -28,31 +27,25 @@ public class CommentController {
     @PutMapping("/{comment-id}")
     @Operation(summary = "Update comment", description = "You can update specific comment with comment id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Comment updateComment(@PathVariable("comment-id") int id, @RequestBody CommentDTO_Update dto)
+    public CommentDTO_Update updateComment(@PathVariable("comment-id") int id, @RequestBody CommentDTO_Update dto)
     {
-        Comment comment = commentService.getCommentById(id);
-        comment.setComment_desc(dto.getComment_desc());
-        return commentService.save(comment);
+        return commentService.updateComment(id,dto);
     }
 
     @PutMapping("/{comment-id}/vote/like")
     @Operation(summary = "Like comment", description = "You can like specific comment with comment id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Comment likeQuestionComments(@PathVariable("comment-id") int id)
+    public CommentVote_DTO likeQuestionComments(@PathVariable("comment-id") int id)
     {
-        Comment comment = commentService.getCommentById(id);
-        comment.setVote_count(comment.getVote_count() + 1);
-        return commentService.save(comment);
+        return commentService.likeComment(id);
     }
 
     @PutMapping("/{comment-id}/vote/dislike")
     @Operation(summary = "Dislike comment", description = "You can dislike specific comment with comment id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Comment dislikeQuestionComments(@PathVariable("comment-id") int id)
+    public CommentVote_DTO dislikeQuestionComments(@PathVariable("comment-id") int id)
     {
-        Comment comment = commentService.getCommentById(id);
-        comment.setVote_count(comment.getVote_count() - 1);
-        return commentService.save(comment);
+        return commentService.dislikeComment(id);
     }
 
 }

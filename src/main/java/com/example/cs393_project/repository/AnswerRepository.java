@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer,Integer>
 {
+    Answer getAnswerById(int id);
 }

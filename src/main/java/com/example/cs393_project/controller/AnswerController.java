@@ -18,58 +18,39 @@ import java.util.List;
 @RequestMapping("/answers")
 public class AnswerController
 {
-
     @Autowired
     AnswerService answerService;
-    @Autowired
-    CommentService commentService;
-
-    /*@GetMapping
-    @Operation(summary = "Get all answers", description = "You can read information about anwers.")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public List<Answer> getAll()
-    {
-        return answerService.getAll();
-    }*/
 
     @PostMapping("/{answer-id}/comments")
     @Operation(summary = "Create comment to answer", description = "You can create comment to specific answer.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Answer createComment(@PathVariable("answer-id") int id, @RequestBody CommentDTO dto)
+    public CommentDTO createComment(@PathVariable("answer-id") int id, @RequestBody CommentDTO dto)
     {
-        Answer answer = answerService.getAnswerById(id);
-        answer.getComments().add(CommentMapper.INSTANCE.toObject(dto));
-        return answerService.save(answer);
+        return answerService.createComment(id,dto);
     }
 
     @PutMapping("/{answer-id}")
     @Operation(summary = "Update answer", description = "You can update specific answer with answer id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Answer updateAnswer(@PathVariable("answer-id") int id, @RequestBody AnswerDTO_Update dto)
+    public AnswerDTO_Update updateAnswer(@PathVariable("answer-id") int id, @RequestBody AnswerDTO_Update dto)
     {
-        Answer answer = answerService.getAnswerById(id);
-        answer.setAnswer_desc(dto.getAnswer_desc());
-        return answerService.save(answer);
+        return answerService.updateAnswer(id,dto);
     }
 
     @PutMapping("/{answer-id}/vote/like")
     @Operation(summary = "Like answer", description = "You can like specific answer with answer id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Answer likeAnswer(@PathVariable("answer-id") int id)
+    public AnswerVote_DTO likeAnswer(@PathVariable("answer-id") int id)
     {
-        Answer answer = answerService.getAnswerById(id);
-        answer.setVote_count(answer.getVote_count() + 1);
-        return answerService.save(answer);
+        return answerService.likeAnswer(id);
     }
 
     @PutMapping("/{answer-id}/vote/dislike")
     @Operation(summary = "Dislike answer", description = "You can dislike specific answer with answer id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Answer dislikeAnswer(@PathVariable("answer-id") int id)
+    public AnswerVote_DTO dislikeAnswer(@PathVariable("answer-id") int id)
     {
-        Answer answer = answerService.getAnswerById(id);
-        answer.setVote_count(answer.getVote_count() - 1);
-        return answerService.save(answer);
+        return answerService.dislikeAnswer(id);
     }
 
 }

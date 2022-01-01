@@ -48,7 +48,7 @@ public class QuestionController
     @GetMapping("/{question-id}")
     @Operation(summary = "Get question by id", description = "You can read all information about question.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Question getQuestionById(@PathVariable("question-id") int id)
+    public SpecificQuestionDTO getQuestionById(@PathVariable("question-id") int id)
     {
         return questionService.getQuestionById(id);
     }
@@ -56,56 +56,42 @@ public class QuestionController
     @PostMapping
     @Operation(summary = "Create question", description = "You can create question.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Question createQuestion(@RequestBody QuestionDTO_Save dto)
+    public QuestionDTO_Save createQuestion(@RequestBody QuestionDTO_Save dto)
     {
-        return questionService.save(QuestionMapper_Save.INSTANCE.toObject(dto));
+        return questionService.save(dto);
     }
 
     @PostMapping("/{question-id}/answers")
     @Operation(summary = "Create answer to question", description = "You can create answer to specific question.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Question createAnswer(@PathVariable("question-id") int id,@RequestBody AnswerDTO dto)
+    public AnswerDTO createAnswer(@PathVariable("question-id") int id,@RequestBody AnswerDTO dto)
     {
-        Question question = questionService.getQuestionById(id);
-        question.getAnswers().add(AnswerMapper.INSTANCE.toObject(dto));
-        question.setAnswer_count(question.getAnswer_count()+1);
-        return questionService.save(question);
+        return questionService.createAnswer(id, dto);
     }
 
     @PostMapping("/{question-id}/comments")
     @Operation(summary = "Create comment to question", description = "You can create comment to specific question.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Question createComments(@PathVariable("question-id") int id,@RequestBody CommentDTO dto)
+    public CommentDTO createComment(@PathVariable("question-id") int id,@RequestBody CommentDTO dto)
     {
-        Question question = questionService.getQuestionById(id);
-        question.getComments().add(CommentMapper.INSTANCE.toObject(dto));
-        return questionService.save(question);
+        return questionService.createComment(id, dto);
     }
 
-    /*@PutMapping()
-    public Question updateQuestion(@RequestBody Question data)
-    {
-        return questionService.save(data);
-    }*/
 
     @PutMapping("/{question-id}/vote/like")
     @Operation(summary = "Like question", description = "You can like specific question with question id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Question likeQuestion(@PathVariable("question-id") int id)
+    public QuestionDTO likeQuestion(@PathVariable("question-id") int id)
     {
-        Question question = questionService.getQuestionById(id);
-        question.setVote_count(question.getVote_count() + 1);
-        return questionService.save(question);
+        return questionService.likeQuestion(id);
     }
 
     @PutMapping("/{question-id}/vote/dislike")
     @Operation(summary = "Dislike question", description = "You can dislike specific question with question id.")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Successful operation")})
-    public Question dislikeQuestion(@PathVariable("question-id") int id)
+    public QuestionDTO dislikeQuestion(@PathVariable("question-id") int id)
     {
-        Question question = questionService.getQuestionById(id);
-        question.setVote_count(question.getVote_count() - 1);
-        return questionService.save(question);
+        return questionService.dislikeQuestion(id);
     }
 
 }

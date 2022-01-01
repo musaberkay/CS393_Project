@@ -1,7 +1,6 @@
 package com.example.cs393_project.service;
 
-import com.example.cs393_project.model.DTO.QuestionDTO;
-import com.example.cs393_project.model.DTO.QuestionMapper;
+import com.example.cs393_project.model.DTO.*;
 import com.example.cs393_project.model.Question;
 import com.example.cs393_project.repository.QuestionRepository;
 import com.example.cs393_project.repository.UserRepository;
@@ -39,16 +38,47 @@ public class QuestionServiceImpl implements QuestionService
     }
 
     @Override
-    public Question getQuestionById(int id)
+    public SpecificQuestionDTO getQuestionById(int id)
     {
-        return questionRepository.findById(id).get();
+        return SpecificQuestionMapper.INSTANCE.toDto(questionRepository.getQuestionById(id));
     }
 
     @Override
-    public Question save(Question question) {
-        return questionRepository.save(question);
+    public QuestionDTO_Save save(QuestionDTO_Save dto) {
+        questionRepository.save(QuestionMapper_Save.INSTANCE.toObject(dto));
+        return dto;
     }
 
+    @Override
+    public AnswerDTO createAnswer(int id, AnswerDTO answerDTO){
+        Question question = questionRepository.getQuestionById(id);
+        question.getAnswers().add(AnswerMapper.INSTANCE.toObject(answerDTO));
+        question.setAnswer_count(question.getAnswer_count()+1);
+        questionRepository.save(question);
+        return answerDTO;
+    }
 
+    @Override
+    public CommentDTO createComment(int id, CommentDTO commentDTO){
+        Question question = questionRepository.getQuestionById(id);
+        question.getComments().add(CommentMapper.INSTANCE.toObject(commentDTO));
+        questionRepository.save(question);
+        return commentDTO;
+    }
 
+    @Override
+    public QuestionDTO likeQuestion(int id){
+        Question question = questionRepository.getQuestionById(id);
+        question.setVote_count(question.getVote_count() + 1);
+        questionRepository.save(question);
+        return QuestionMapper.INSTANCE.toDto(question);
+    }
+
+    @Override
+    public QuestionDTO dislikeQuestion(int id) {
+        Question question = questionRepository.getQuestionById(id);
+        question.setVote_count(question.getVote_count() - 1);
+        questionRepository.save(question);
+        return QuestionMapper.INSTANCE.toDto(question);
+    }
 }

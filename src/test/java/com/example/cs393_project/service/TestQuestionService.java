@@ -1,5 +1,6 @@
 package com.example.cs393_project.service;
 
+import com.example.cs393_project.model.DTO.QuestionMapper_Save;
 import com.example.cs393_project.model.Question;
 import com.example.cs393_project.model.User;
 import org.junit.jupiter.api.Test;
@@ -47,9 +48,6 @@ public class TestQuestionService
         user.getQuestions().add(question);
 
 
-        questionService.save(question);
-
-
-
+        questionService.save(QuestionMapper_Save.INSTANCE.toDto(question));
     }
 }

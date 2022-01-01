@@ -1,7 +1,5 @@
 package com.example.cs393_project.model.DTO;
 
-import com.example.cs393_project.model.User;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +7,7 @@ public class QuestionDTO_Save {
     private String title;
     private String question_desc;
     private List<String> questionTags = new ArrayList<>();
-    private User user;
+    private UserDTO_Save user;
 
     public String getTitle() {
         return title;
@@ -35,11 +33,11 @@ public class QuestionDTO_Save {
         this.questionTags = questionTags;
     }
 
-    public User getUser() {
+    public UserDTO_Save getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO_Save user) {
         this.user = user;
     }
 }

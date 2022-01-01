@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface QuestionRepository extends JpaRepository<Question,Integer>
 {
-    public List<Question> getQuestionByQuestionTagsIn(List<String> tags);
+    List<Question> getQuestionByQuestionTagsIn(List<String> tags);
+    Question getQuestionById(int id);
 }

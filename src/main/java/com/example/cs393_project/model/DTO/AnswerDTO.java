@@ -1,11 +1,8 @@
 package com.example.cs393_project.model.DTO;
 
-import com.example.cs393_project.model.User;
-
-
 public class AnswerDTO {
     private String answer_desc;
-    private User user;
+    private UserDTO_Save user;
 
     public String getAnswer_desc() {
         return answer_desc;
@@ -15,11 +12,11 @@ public class AnswerDTO {
         this.answer_desc = answer_desc;
     }
 
-    public User getUser() {
+    public UserDTO_Save getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO_Save user) {
         this.user = user;
     }
 }
